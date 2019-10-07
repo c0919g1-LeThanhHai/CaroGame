@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="showBoard(newBoard());">
+<h1>Caro game</h1>
+<p id="board"></p>
+<button id="btn">Chọn ô</button>
+<script>
+    let board = document.getElementById("board");
+
+    let arr = new Array();
+    let data = "";
+    let num = Number(prompt("Nhập vào số ô bàn cờ"));
+
+    function newBoard() {
+        for(let i=0; i<num;i++) {
+            arr[i] = new Array();
+            for(let j=0;j<num;j++) {
+                arr[i].push(0);
+            }
+        }
+        return arr;
+    }
+    function showBoard(arr) {
+        data = "";
+        for(let i=0; i<num;i++) {
+            for(let j=0;j<num;j++) {
+                data += arr[i][j] + "&nbsp;&nbsp;";
+            }
+            data +="<br>";
+        }
+        board.innerHTML = data;
+    }
+
+    let btn = document.getElementById("btn");
+    btn.addEventListener('click',() => {
+        let x;
+        do {
+            x = Number(prompt("Nhập tọa độ x"));
+        }while(x>=num);
+        let y
+        do {
+            y = Number(prompt("Nhập tọa độ y"));
+        } while(y>=num);
+        arr[x][y] = "x";
+        showBoard(arr);
+    });
+</script>
+</body>
+</html>
